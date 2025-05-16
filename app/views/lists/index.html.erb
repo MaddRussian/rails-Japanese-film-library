@@ -1,4 +1,4 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('../images/tech-daily-PGuCnUzsRSM-unsplash (1).jpg');">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url();">
   <% if @list.photo.attached? %>
     <%= cl_image_path @list.photo.key, width: 400, height: 300, crop: :fill %>
   <% end %>
@@ -9,7 +9,7 @@
 <div class="container mt-3">
   <div class="cards">
     <% @lists.each do |list| %>
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(file:///Users/williamsebastian/Downloads/tech-daily-PGuCnUzsRSM-unsplash%20(1).jpg)">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<% @list.photo.key %>)">
         <h2> <%= link_to list.name, list_path(list), class: "card-link" %> </h2>
       </div>
     <% end %>
