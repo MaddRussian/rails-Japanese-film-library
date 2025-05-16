@@ -1,18 +1,17 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url();">
-  <% if @list.photo.attached? %>
-    <%= cl_image_path @list.photo.key, width: 400, height: 300, crop: :fill %>
-  <% end %>
+<div class="banner" style='width: 100%; height: 100px; background-image: url("https://res.cloudinary.com/dj5lg0ndv/image/upload/v1747378805/tech-daily-PGuCnUzsRSM-unsplash_1_vfoexx.jpg");'>
   <div class="container">
-    <h1>Movies!!!</h1>
+    <h1>Welcome To Your Movie Collection</h1>
   </div>
 </div>
 <div class="container mt-3">
   <div class="cards">
     <% @lists.each do |list| %>
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<% @list.photo.key %>)">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= list.photo.attached? ? (cl_image_path list.photo.key, height: 300, crop: :fill) : ""%>)">
         <h2> <%= link_to list.name, list_path(list), class: "card-link" %> </h2>
       </div>
     <% end %>
   </div>
-  <%= render "form", list: @list %>
+  <div class="m-3">
+    <%= render "form", list: @list %>
+  </div>
 </div>
