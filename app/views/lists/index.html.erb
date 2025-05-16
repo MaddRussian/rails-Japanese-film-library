@@ -1,4 +1,7 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('../images/tech-daily-PGuCnUzsRSM-unsplash (1).jpg');">
+  <% if @list.photo.attached? %>
+    <%= cl_image_path @list.photo.key, width: 400, height: 300, crop: :fill %>
+  <% end %>
   <div class="container">
     <h1>Movies!!!</h1>
   </div>
@@ -12,5 +15,4 @@
     <% end %>
   </div>
   <%= render "form", list: @list %>
-</div>
 </div>

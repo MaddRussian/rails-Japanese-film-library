@@ -1,7 +1,5 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('../images/tech-daily-PGuCnUzsRSM-unsplash (1).jpg');">
-  <div class="container">
-    <h1><%= @list.name %></h1>
-  </div>
+<div class="item card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= list.photo.attached? ? cl_image_path(list.photo.key) : image_path('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPQDYau3Hs4-xw1i8jVSUY4BlF4FLmg8lQqg&usqp=CAU') %>)">
+  <%= list.name %>
 </div>
 <div class="container mt-3">
   <div class="row">
