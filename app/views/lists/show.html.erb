@@ -2,25 +2,29 @@
 <%= render "shared/banner" %>
 <div class="container mt-3">
   <div class="row">
-    <div class="col-9">
-      <div class="cards">
-        <% @list.bookmarks.each do |bookmark| %>
-          <%= render 'bookmarks/card', bookmark: bookmark %>
-        <% end %>
-        <%= link_to list_path(@list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-          <i class="fa-solid fa-trash"></i>
-        <% end %>
-      </div>
+    <div class="cards">
+      <% @list.bookmarks.each do |bookmark| %>
+        <div class="card-category d-flex justify-content-start align-items-start" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= bookmark.photo.attached? ? (cl_image_path list.photo.key, height: 400, crop: :fill) : ""%>)">
+          <h2 class="m-3"> <%= bookmark.name %> </h2>
+        </div>
+      <% end %>
     </div>
     <div class="col-3">
       <%= render 'bookmarks/form' %>
     </div>
   </div>
-  <%= link_to root_path, class: "btn btn-warning mt-3" do %>
-    <i class="fa-solid fa-house"></i>
-  <% end %>
 </div>
 <%= @list.bookmarks.each do |bookmark| %>
   <%= bookmark.movie.title%>
   <%= bookmark.comment%>
 <% end%>
+<%# <div class="col-9">
+      <div class="cards">
+        <%# @list.bookmarks.each do |bookmark| %>
+  <%#= render 'bookmarks/card', bookmark: bookmark %>
+  <%# end %> %>
+  <%#= link_to list_path(@list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+    <%# <i class="fa-solid fa-trash"></i> %>
+    <%# end %>
+    <%# </div>
+      </div> %>
