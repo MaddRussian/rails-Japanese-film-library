@@ -1,5 +1,5 @@
-<%= simple_form_for [@list, @bookmark] do |f| %>
-  <%= f.association :title%>
+<%= simple_form_for @bookmark, html: { multipart: true} do |f| %>
+  <%= f.input :name %>
   <%= f.input :photo, as: :file %>
   <%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>

@@ -3,10 +3,12 @@
 <div class="container mt-3">
   <div class="cards">
     <% @lists.each do |list| %>
-      <div class="card-category d-flex justify-content-start align-items-start" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/app/assets/images/something.jpg')">
-        <h2 class="m-3"> <%= link_to list.name, list_path(list), class: "card-link" %> </h2>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://thecinemaholic.com/wp-content/uploads/2017/09/tumblr_lzwzpkdm4f1qbndnto1_1280.jpg)">
+        <h2><%= link_to list.name, list_path(list) %></h2>
+        <%= link_to "", class: "card-link" %>
+        <%= link_to list_path(list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+          <i class="fa-solid fa-trash"></i>
+        <% end %>
       </div>
     <% end %>
   </div>
-</div>
-<%#= list.photo.attached? ? (cl_image_path list.photo.key, height: 400, crop: :fill) : ""%>
