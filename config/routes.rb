@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  root to: "lists#index"
-  resources :lists, only: [:index, :new, :show, :create, :destroy]
-  resources :bookmarks, only: [:create, :destroy]
-  resources :movies, only: [:new, :recommend]
+  root to: "films#index"
+  resources :films, only: [:index, :show] do
+    collection do
+      get :random
+    end
+  end
+  resources :lists do
+    resources :bookmarks, only: [:create, :destroy]
+  end
 end

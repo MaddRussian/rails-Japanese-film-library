@@ -4,6 +4,12 @@ class ListsController < ApplicationController
     @list = List.new
   end
 
+  def show
+    @list = List.find(params[:id])
+    @bookmarks = @list.bookmarks
+    @bookmark = Bookmark.new
+  end
+
   def new
     @list = List.new
   end
@@ -16,12 +22,6 @@ class ListsController < ApplicationController
       @lists = List.all
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def show
-    @list = List.find(params[:id])
-    @bookmarks = @list.bookmarks
-    @bookmark = Bookmark.new
   end
 
   def destroy
