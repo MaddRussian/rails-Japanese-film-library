@@ -1,13 +1,11 @@
 class BookmarksController < ApplicationController
   def create
-    # @list = List.find(params[:list_id])
-    @bookmark = Bookmark.new(bookmark_params)
+    @list = List.find(params[:list_id])
+    @bookmark = @list.bookmarks.new(bookmark_params)
     if @bookmark.save
-      puts "Created Successfully"
-      redirect_to root_path, notice: "Bookmark created successfully."
+      redirect_to lists_path(@list), notice: "Film added to #{@list.name}"
     else
-      raise
-      redirect_to root_path, status: :unprocessable_entity
+      redirect_to root_path, alert: "Failed to add film."
     end
   end
 
@@ -20,6 +18,6 @@ class BookmarksController < ApplicationController
   private
 
   def bookmark_params
-    params.require(:bookmark).permit(:name, :photo)
+    params.require(:bookmark).permit(:film_id)
   end
 end

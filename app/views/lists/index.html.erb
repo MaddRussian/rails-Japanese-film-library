@@ -3,12 +3,12 @@
 <div class="container mt-3">
   <div class="cards">
     <% @lists.each do |list| %>
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://thecinemaholic.com/wp-content/uploads/2017/09/tumblr_lzwzpkdm4f1qbndnto1_1280.jpg)">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://static0.colliderimages.com/wordpress/wp-content/uploads/sharedimages/2024/04/onibaba-movie-poster.jpg)">
         <h2><%= link_to list.name, list_path(list) %></h2>
-        <%= link_to "", class: "card-link" %>
-        <%= link_to list_path(list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-          <i class="fa-solid fa-trash"></i>
-        <% end %>
-      </div>
-    <% end %>
+        <%#= link_to list_path(list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+          <%# <i class="fa-solid fa-trash"></i> %>
+          <%# end %>
+        </div>
+      <% end %>
+    </div>
   </div>

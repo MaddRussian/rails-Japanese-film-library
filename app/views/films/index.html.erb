@@ -1,0 +1,41 @@
+<%= render "shared/navbar" %>
+<%= render "shared/banner" %>
+<%= render "shared/navbar2" %>
+<div class="container">
+  <div class="m-2">
+    <div class="cards">
+      <% @films.each do |film| %>
+        <% if film.poster %>
+          <div class="card">
+            <div class="image">
+              <%= image_tag url_for(film.poster), alt: "Film poster" %>
+            </div>
+            <div class="details">
+              <div class="center">
+                <h1><%= film.title %><br>
+                  <span><%= film.director %> </span></h1>
+                <p> <%= film.year %> </p>
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Add to list
+                  </button>
+                  <ul class="dropdown-menu">
+                    <% List.all.each do |list| %>
+                      <li>
+                        <%= form_with url: list_bookmarks_path(list), method: :post, local: true do |f| %>
+                          <%= hidden_field_tag :bookmark_film_id, film.id %>
+                          <%= hidden_field_tag "bookmark[film_id]", film.id %>
+                          <%= f.submit "Add to #{list.name}", class: "dropdown-item btn btn-link p-0 text-start" %>
+                        <% end %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
