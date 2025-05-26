@@ -1,0 +1,23 @@
+// .dropdown-menu {
+//   max-height: 0;
+//   // overflow: hidden;
+//   // opacity: 1;
+//   transform: translateY(10px);
+//   transition: max-height 0.4s ease, opacity 0.5s ease, transform 0.5s ease;
+//   // display: block !important; // override Bootstrap default
+//   // visibility: hidden;
+//   pointer-events: none;
+// }
+
+// .dropdown.show .dropdown-menu {
+//   max-height: 20px; // large enough to reveal all items
+//   opacity: 1;
+//   transform: translateY(50%);
+//   visibility: visible;
+//   pointer-events: auto;
+// }
+
+// .dropdown-item {
+//   margin-left: 14px;
+//   margin-top: 2px;
+// }

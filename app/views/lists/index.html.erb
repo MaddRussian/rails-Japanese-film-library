@@ -4,11 +4,8 @@
   <div class="cards">
     <% @lists.each do |list| %>
       <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://static0.colliderimages.com/wordpress/wp-content/uploads/sharedimages/2024/04/onibaba-movie-poster.jpg)">
-        <h2><%= link_to list.name, list_path(list) %></h2>
-        <%#= link_to list_path(list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-          <%# <i class="fa-solid fa-trash"></i> %>
-          <%# end %>
-        </div>
-      <% end %>
-    </div>
+        <h2><%= link_to list.name, list_path(list), class: "d-flex justify-content-center", style: "color: white;" %></h2>
+      </div>
+    <% end %>
   </div>
+</div>

@@ -19,17 +19,16 @@
                   <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Add to list
                   </button>
-                  <ul class="dropdown-menu">
+                  <div class="dropdown-menu" style="background-color: transparent; border: none">
                     <% List.all.each do |list| %>
-                      <li>
+                      <div class="dropdown-item p-0">
                         <%= form_with url: list_bookmarks_path(list), method: :post, local: true do |f| %>
-                          <%= hidden_field_tag :bookmark_film_id, film.id %>
                           <%= hidden_field_tag "bookmark[film_id]", film.id %>
-                          <%= f.submit "Add to #{list.name}", class: "dropdown-item btn btn-link p-0 text-start" %>
+                          <%= f.submit "#{list.name}", class: "btn btn-link text-start", style: "background: transparent; color: white" %>
                         <% end %>
-                      </li>
+                      </div>
                     <% end %>
-                  </ul>
+                  </div>
                 </div>
               </div>
             </div>
