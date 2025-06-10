@@ -1,6 +1,37 @@
 <%= render "shared/navbar" %>
 <%= render "shared/banner" %>
-<h1><%= @list.name %></h1>
+<div class="collapse" id="navbarToggleExternalContent" data-bs-theme="light">
+  <div class="bg-dark p-4">
+    <h5 class="text-body-emphasis h4">Collapsed content</h5>
+    <span class="text-body-secondary">Toggleable via the navbar brand.</span>
+  </div>
+</div>
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <% current_list_id = params[:id].to_i %>
+    <nav class="nav" style="gap: 24px;">
+      <% List.all.each do |list| %>
+        <% active = list.id == current_list_id %>
+        <%= link_to list.name,
+                    list_path(list),
+                    style: "color: white; #{'text-decoration: underline;' if active}" %>
+      <% end%>
+    </nav>
+    <div class="row justify-content-space-evenly">
+      <div class="col-sm-8 my-3">
+        <%= form_with url: films_path, method: :get, class: "d-flex" do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            style: "width: 150px",
+            placeholder: "Enter a movie"
+        %>
+          <%= submit_tag "Search", name: "", class: "btn btn-outline-secondary mx-2" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>
 <div class="container">
   <div class="cards">
     <% if @bookmarks.any? %>

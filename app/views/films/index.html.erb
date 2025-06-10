@@ -1,40 +1,73 @@
 <%= render "shared/navbar" %>
 <%= render "shared/banner" %>
-<%= render "shared/navbar2" %>
+<div class="collapse" id="navbarToggleExternalContent" data-bs-theme="light">
+  <div class="bg-dark p-4">
+    <h5 class="text-body-emphasis h4">Collapsed content</h5>
+    <span class="text-body-secondary">Toggleable via the navbar brand.</span>
+  </div>
+</div>
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <% current_list_id = params[:id].to_i %>
+    <nav class="nav" style="gap: 24px;">
+      <% List.all.each do |list| %>
+        <% active = list.id == current_list_id %>
+        <%= link_to list.name,
+                    list_path(list),
+                    style: "color: white; #{'text-decoration: underline;' if active}" %>
+      <% end%>
+    </nav>
+    <div class="row justify-content-space-evenly">
+      <div class="col-sm-8 my-3">
+        <%= form_with url: films_path, method: :get, class: "d-flex" do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            style: "width: 150px",
+            placeholder: "Enter a movie"
+        %>
+          <%= submit_tag "Search", name: "", class: "btn btn-outline-secondary mx-2" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>
 <div class="container">
   <div class="m-2">
-    <div class="cards">
-      <% @films.each do |film| %>
-        <% if film.poster %>
-          <div class="card">
-            <div class="image">
-              <%= image_tag url_for(film.poster), alt: "Film poster" %>
-            </div>
-            <div class="details">
-              <div class="center">
-                <h1><%= film.title %><br>
-                  <span><%= film.director %> </span></h1>
-                <p> <%= film.year %> </p>
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Add to list
-                  </button>
-                  <div class="dropdown-menu" style="background-color: transparent; border: none">
-                    <% List.all.each do |list| %>
-                      <div class="dropdown-item p-0">
-                        <%= form_with url: list_bookmarks_path(list), method: :post, local: true do |f| %>
-                          <%= hidden_field_tag "bookmark[film_id]", film.id %>
-                          <%= f.submit "#{list.name}", class: "btn btn-link text-start", style: "background: transparent; color: white" %>
-                        <% end %>
-                      </div>
-                    <% end %>
+    <%= turbo_frame_tag "films_frame" do %>
+      <div class="cards">
+        <% @films.shuffle.each do |film| %>
+          <% if film.poster %>
+            <div class="card">
+              <div class="image">
+                <%= image_tag url_for(film.poster), alt: "Film poster" %>
+              </div>
+              <div class="details">
+                <div class="center">
+                  <h1><%= film.title %><br>
+                    <span><%= film.director %> </span></h1>
+                  <p> <%= film.year %> </p>
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Add to list
+                    </button>
+                    <div class="dropdown-menu">
+                      <% List.all.each do |list| %>
+                        <div class="dropdown-item p-0">
+                          <%= form_with url: list_bookmarks_path(list), method: :post, local: true do |f| %>
+                            <%= hidden_field_tag "bookmark[film_id]", film.id %>
+                            <%= f.submit "#{list.name}", class: "btn btn-link text-start" %>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>

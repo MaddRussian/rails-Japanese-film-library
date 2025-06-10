@@ -1,4 +1,6 @@
 class ListsController < ApplicationController
+  before_action :index
+
   def index
     @lists = List.all
   end

@@ -3,7 +3,7 @@ class BookmarksController < ApplicationController
     @list = List.find(params[:list_id])
     @bookmark = @list.bookmarks.new(bookmark_params)
     if @bookmark.save
-      redirect_to lists_path(@list), notice: "Film added to #{@list.name}"
+      redirect_to list_path(@list), notice: "Film added to #{@list.name}"
     else
       redirect_to root_path, alert: "Failed to add film."
     end

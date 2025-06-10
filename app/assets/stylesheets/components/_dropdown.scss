@@ -21,3 +21,21 @@
 //   margin-left: 14px;
 //   margin-top: 2px;
 // }
+
+.dropdown-menu {
+  background: transparent;
+  color: black;
+  &:hover {
+    color: black;
+    text-decoration: none;
+  }
+}
+
+.dropdown-item {
+  color: black;
+  background-color: transparent;
+}
+
+.text-start {
+  color: black;
+}
