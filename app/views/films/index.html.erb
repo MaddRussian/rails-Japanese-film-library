@@ -51,12 +51,12 @@
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Add to list
                     </button>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu" style="min-width: 200px;">
                       <% List.all.each do |list| %>
-                        <div class="dropdown-item p-0">
+                        <div class="dropdown-item">
                           <%= form_with url: list_bookmarks_path(list), method: :post, data: { turbo_frame: "_top" } do |f| %>
                             <%= hidden_field_tag "bookmark[film_id]", film.id %>
-                            <%= f.submit "#{list.name}", class: "btn btn-link text-start" %>
+                            <%= f.submit "#{list.name}", class: "btn btn-link text-dark text-start w-100" %>
                           <% end %>
                         </div>
                       <% end %>
