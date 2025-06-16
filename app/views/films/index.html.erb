@@ -54,7 +54,7 @@
                     <div class="dropdown-menu">
                       <% List.all.each do |list| %>
                         <div class="dropdown-item p-0">
-                          <%= form_with url: list_bookmarks_path(list), method: :post, local: true do |f| %>
+                          <%= form_with url: list_bookmarks_path(list), method: :post, data: { turbo_frame: "_top" } do |f| %>
                             <%= hidden_field_tag "bookmark[film_id]", film.id %>
                             <%= f.submit "#{list.name}", class: "btn btn-link text-start" %>
                           <% end %>
